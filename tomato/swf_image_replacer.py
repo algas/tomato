@@ -215,15 +215,17 @@ class SwfImage(object):
         self.swf_pos += num
         return self.swf[self.swf_pos - num: self.swf_pos]
 
-    def write(self, f):
+    def write(self, f=None):
         "swf 出力"
         # ヘッダー長を書き換え
         fl = _h32(self.file_length)
         self.swf_head = self.swf_head[:4] + fl + self.swf_head[8:]
-        f.write(self.swf_head)
-        for block in self.swf_blocks:
-            f.write(block['value'])
-        f.write('\00\00')
+        result = self.swf_head + ''.join([block['value'] for block in self.swf_blocks]) + '\00\00'
+        if f is not None:
+            f.write(result)
+            return None
+        else:
+            return result
 
 
 class Image2lossless(object):
