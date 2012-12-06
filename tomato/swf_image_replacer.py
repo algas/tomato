@@ -244,7 +244,7 @@ class Image2lossless(object):
             RGBA     ->  DefineBitsLossless2  format 5
         """
         self.image = Image.open(StringIO(image_data))
-        assert self.image.format in ('GIF', 'PNG')
+#        assert self.image.format in ('GIF', 'PNG')
         self.tag = tag
 
     def get_lossless_format(self):
