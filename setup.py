@@ -31,7 +31,7 @@ setup(name='tomato',
       install_requires=[
         "msgpack-python>=0.1.8, !=015final",
         "bitarray",
-        "PIL",
+        "pillow",
       ],
       entry_points="""
       # -*- Entry points: -*-
